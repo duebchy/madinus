@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Небольшой сайт-карточка к годовщине с вашей историей, фото и личным письмом.">
+  <title>Наша история</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/base.css">
+  <link rel="stylesheet" href="./styles/sections.css">
+  <link rel="stylesheet" href="./styles/animations.css">
+</head>
+<body>
+  <div class="background-glow" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#top">Наша история</a>
+      <nav class="main-nav">
+        <a href="#story">История</a>
+        <a href="#moments">Моменты</a>
+        <a href="#letter">Письмо</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero container reveal">
+      <p class="eyebrow" data-hero-eyebrow>С первого дня</p>
+      <h1 data-couple-names>Ты + Она</h1>
+      <p class="hero-lead" data-hero-lead>
+        Замени это коротким сообщением о ваших отношениях.
+      </p>
+      <p class="hero-date">
+        Вместе с <span data-anniversary-date>2026-01-01</span>
+      </p>
+      <img class="hero-image" src="./assets/images/hero/cover.jpg" alt="Главная фотография вас двоих">
+    </section>
+
+    <section id="story" class="section container reveal">
+      <div class="section-heading">
+        <p class="eyebrow">Хронология</p>
+        <h2>Как все началось</h2>
+      </div>
+      <div id="timeline" class="timeline" aria-live="polite"></div>
+    </section>
+
+    <section class="section container reveal">
+      <div class="section-heading">
+        <p class="eyebrow">Мелочи</p>
+        <h2>То, что делает нас нами</h2>
+      </div>
+      <ul id="facts-list" class="facts-list" aria-live="polite"></ul>
+    </section>
+
+    <section id="moments" class="section container reveal">
+      <div class="section-heading">
+        <p class="eyebrow">Галерея</p>
+        <h2>Любимые моменты</h2>
+      </div>
+      <div id="gallery-grid" class="gallery-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="letter" class="section container reveal">
+      <div class="section-heading">
+        <p class="eyebrow">Для тебя</p>
+        <h2>Мое письмо</h2>
+      </div>
+      <article class="letter-card">
+        <p data-letter-text>
+          Замени это текстом своего письма к годовщине.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>
+        Сделано с любовью:
+        <span data-signature>Твое имя</span>
+      </p>
+      <p>
+        <span id="year"></span>
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>

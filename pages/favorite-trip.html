@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Страница события: Любимое путешествие.">
+  <title>Любимое путешествие</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/event-page.css">
+</head>
+<body>
+  <div class="background-glow" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../index.html">Наша история</a>
+      <nav class="main-nav">
+        <a href="#story">Рассказ</a>
+        <a href="#photos">Фото</a>
+        <a href="../index.html#story">Таймлайн</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="event-page-main container">
+    <section class="event-page-hero" id="top">
+      <p class="eyebrow">Событие 03</p>
+      <h1>Любимое путешествие</h1>
+      <time class="event-date" datetime="2025-07-17">17 июля 2025</time>
+      <p class="event-lead">
+        На этой странице собери историю вашей лучшей поездки: место, маршрут, смешные моменты и воспоминания, к которым хочется возвращаться.
+      </p>
+      <img class="event-main-photo" src="../assets/images/events/favorite-trip/main.jpg" alt="Главное фото из любимого путешествия">
+    </section>
+
+    <section class="event-page-section" id="story">
+      <h2>Рассказ о путешествии</h2>
+      <article class="event-story-card">
+        <p>
+          Абзац 1: откуда и зачем вы поехали.
+
+          Абзац 2: ваш самый яркий момент в дороге.
+
+          Абзац 3: почему именно это путешествие стало любимым для вас обоих.
+        </p>
+      </article>
+    </section>
+
+    <section class="event-page-section" id="photos">
+      <h2>Фото из поездки</h2>
+      <div class="event-photos-grid">
+        <figure>
+          <img src="../assets/images/events/favorite-trip/photo-01.jpg" alt="Фото путешествия 1" loading="lazy">
+        </figure>
+        <figure>
+          <img src="../assets/images/events/favorite-trip/photo-02.jpg" alt="Фото путешествия 2" loading="lazy">
+        </figure>
+        <figure>
+          <img src="../assets/images/events/favorite-trip/photo-03.jpg" alt="Фото путешествия 3" loading="lazy">
+        </figure>
+      </div>
+      <p class="event-caption">Замени файлы на свои фото в папке `assets/images/events/favorite-trip/`.</p>
+    </section>
+
+    <a class="back-link" href="../index.html#story">Вернуться к таймлайну</a>
+  </main>
+</body>
+</html>
