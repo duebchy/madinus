@@ -42,6 +42,9 @@
 - Анимации появления: `styles/animations.css`
 - Рендер данных на главной: `scripts/main.js`
 
+`content/site-content.js` используется только на главной странице (`index.html`).
+Тексты на страницах событий (`pages/*.html`) нужно менять прямо в этих файлах.
+
 ## Куда класть фото событий
 
 - Первая встреча: `assets/images/events/first-meeting/`

@@ -1,15 +1,61 @@
-import { siteContent } from "../content/site-content.js";
+// Force fresh content reload on each page refresh during local static development.
+const { siteContent } = await import(`../content/site-content.js?v=${Date.now()}`);
 
 function setText(selector, value) {
   const node = document.querySelector(selector);
-  if (node && typeof value === "string") {
+  if (node && typeof value === "string" && value.trim() !== "") {
     node.textContent = value;
   }
 }
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll("\"", "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function parseDateInput(dateValue) {
+  if (typeof dateValue !== "string") return null;
+
+  const isoMatch = dateValue.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (isoMatch) {
+    const year = Number(isoMatch[1]);
+    const month = Number(isoMatch[2]);
+    const day = Number(isoMatch[3]);
+    const date = new Date(year, month - 1, day);
+    if (
+      date.getFullYear() === year &&
+      date.getMonth() === month - 1 &&
+      date.getDate() === day
+    ) {
+      return date;
+    }
+  }
+
+  const ruMatch = dateValue.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  if (ruMatch) {
+    const day = Number(ruMatch[1]);
+    const month = Number(ruMatch[2]);
+    const year = Number(ruMatch[3]);
+    const date = new Date(year, month - 1, day);
+    if (
+      date.getFullYear() === year &&
+      date.getMonth() === month - 1 &&
+      date.getDate() === day
+    ) {
+      return date;
+    }
+  }
+
+  return null;
+}
+
 function formatDate(dateValue) {
-  const date = new Date(dateValue);
-  if (Number.isNaN(date.getTime())) return dateValue;
+  const date = parseDateInput(dateValue);
+  if (!date) return dateValue;
 
   return new Intl.DateTimeFormat("ru-RU", {
     day: "2-digit",
@@ -22,17 +68,25 @@ function renderTimeline(items) {
   const root = document.querySelector("#timeline");
   if (!root || !Array.isArray(items)) return;
 
-  root.innerHTML = items.map((item) => `
+  root.innerHTML = items.map((item) => {
+    const dateRaw = typeof item?.date === "string" ? item.date : "";
+    const dateText = escapeHtml(formatDate(dateRaw));
+    const title = escapeHtml(item?.title || "Событие");
+    const text = escapeHtml(item?.text || "Добавь описание этого события.");
+    const detailsLink = typeof item?.detailsLink === "string" ? item.detailsLink : "";
+
+    return `
     <article class="timeline-item">
-      <time datetime="${item.date}">${formatDate(item.date)}</time>
+      <time datetime="${escapeHtml(dateRaw)}">${dateText}</time>
       <h3>
-        ${item.detailsLink
-          ? `<a class="timeline-title-link" href="${item.detailsLink}">${item.title}</a>`
-          : `<span class="timeline-title-static">${item.title}</span>`}
+        ${detailsLink
+          ? `<a class="timeline-title-link" href="${escapeHtml(detailsLink)}">${title}</a>`
+          : `<span class="timeline-title-static">${title}</span>`}
       </h3>
-      <p>${item.text}</p>
+      <p>${text}</p>
     </article>
-  `).join("");
+  `;
+  }).join("");
 }
 
 function renderFacts(items) {
@@ -41,8 +95,8 @@ function renderFacts(items) {
 
   root.innerHTML = items.map((item) => `
     <li class="fact-card">
-      <strong>${item.title}</strong>
-      <p>${item.text}</p>
+      <strong>${escapeHtml(item?.title || "Факт")}</strong>
+      <p>${escapeHtml(item?.text || "Добавь текст факта.")}</p>
     </li>
   `).join("");
 }
@@ -53,7 +107,7 @@ function renderGallery(items) {
 
   root.innerHTML = items.map((item) => `
     <figure class="gallery-item">
-      <img src="${item.src}" alt="${item.alt}" loading="lazy">
+      <img src="${escapeHtml(item?.src || "")}" alt="${escapeHtml(item?.alt || "Фото")}" loading="lazy">
     </figure>
   `).join("");
 }
