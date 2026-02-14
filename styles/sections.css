@@ -150,7 +150,32 @@
 
 @media (max-width: 680px) {
   .hero {
-    padding-top: 68px;
+    padding-top: 58px;
+    gap: 14px;
+  }
+
+  .hero-lead {
+    font-size: 0.98rem;
+  }
+
+  .hero-image {
+    margin-top: 12px;
+    border-radius: 18px;
+  }
+
+  .timeline-item {
+    padding: 14px;
+  }
+
+  .timeline-title-link,
+  .timeline-title-static {
+    font-size: 1.25rem;
+    padding: 5px 10px;
+    border-radius: 10px;
+  }
+
+  .letter-card {
+    padding: 18px;
   }
 
   .facts-list,

@@ -1,8 +1,8 @@
 export const siteContent = {
   coupleNames: "Кирилл + Мадина",
   heroEyebrow: "Наша годовщина",
-  heroLead: "Напиши здесь короткую фразу о том, что для тебя значат эти отношения.",
-  anniversaryDate: "15-02-2026",
+  heroLead: "я щас перну",
+  anniversaryDate: "15-02-2025",
   signature: "Кирилл",
   timeline: [
     {
